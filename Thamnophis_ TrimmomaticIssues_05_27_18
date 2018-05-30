@@ -1,0 +1,292 @@
+MAY 24th 2018
+DONE ON AUBURN UNIVERSITY'S SUPERCOMPUTER, HOPPER
+
+### LAB NOTES ###
+### USING TRIMMOMATIC ON THAMNOPHIS RAW DATA ###
+## Scripts ran on Hopper ###
+
+## Original raw data files are in Schwartz lab scratch directory ##
+## Raw data files are gzip (.gz) 
+## Gzip reduces the size of the named files
+/scratch/schwartz_T_lab/Reptiles_Blood_RNAseq/RawData
+
+
+################################################################################################
+################################################################################################
+
+Script Checklist (if there is an "X" by it....I already ran it)
+[X] cleanThamNOfirstTRY.sh   (ran on May 24th 2018)
+[X] cleanThamNOsecondTRY.sh  (ran on May 24th 2018)
+[X] cleanThamnothirdTry.sh   (ran on May 25th 2018)
+[X] cleanThamno_fourthTry.sh (ran on May 26th 2018)
+[X] cleanThamno_fifth_try.sh (ran on May 26th 2018) SCRIPT THAT WORKS!!
+
+
+
+################################################################################################
+################################################################################################
+
+
+### Check files for Corruption using md5sum ###
+### actual command: md5um Thamnophis_AAGAGA_L001_R1_001.fastq 
+
+(Foward Reads R1)
+014910bc71d60aeb5e47bc947cea50f6  Thamnophis_AAGAGA_L001_R1_001.fastq.gz
+32359ca45623c30affa3bd9ccb889051  Thamnophis_AAGAGA_L002_R1_001.fastq.gz
+
+(Reverse Reads R2)
+bbab256bd3c73de30ecb7c30ad9433ed  Thamnophis_AAGAGA_L001_R2_001.fastq.gz
+90794d953e9d93406f43856d4002e43f  Thamnophis_AAGAGA_L002_R2_001.fastq.gz
+
+### After transferring to my personal directory in scratch, check for corruption again
+## My directory in scratch 
+/scratch/ReptileTrinityDYS/Thamnophis
+
+### FILES IN MY SCRATCH DIRECTORY WERE NOT GZIP (.gz) I dont know why due to poor note taking ... need to re-run scripts all over again and transfer my successful output files 
+somewhere else to another directory 
+
+## Files in my scratch directory
+## Checking files for corruption 
+(Foward Reads)
+a3d1d35537ad25cbcc5bb4023beba961  Thamnophis_AAGAGA_L001_R1_001.fastq
+0b684d9381d9ab9bb5b41f1e6db87fae  Thamnophis_AAGAGA_L002_R1_001.fastq
+
+(Reverse Reads)
+454a381d2998c1d5d4374846710859da  Thamnophis_AAGAGA_L001_R2_001.fastq
+7a46a5a2136e7b144686e9ab1cb30102  Thamnophis_AAGAGA_L002_R2_001.fastq
+
+
+################################################################################################
+################################################################################################
+
+
+## transferred successful output files into a new directory from previous scripts 
+/home/dys0004/ReptileBloodTranscriptome/Thamno_Successful_ouputfiles_Trimmomatic_May24_2018
+
+
+################################################################################################
+################################################################################################
+
+#### NOTE!!!!!!!!! md5sum will be different when files are unzipped !!!!!!!!!!!!! 
+
+
+################################################################################################
+################################################################################################
+
+
+Deleted all files (except successful output files for right now)..... copied over raw data files and check for corruption AGAIN and everything is great!
+
+Next.... RE-RUNNING ALL SCRIPTS !!!
+
+
+################################################################################################
+################################################################################################
+
+###### cleanThamNOfirstTRY.sh ######
+###### Error message from this script #####
+###### CleaningScriptThamnophis.e534771 #####
+
+++ tissueID=Thamnophis_AAGAGA
+++ gunzip Thamnophis_AAGAGA_L001_R1_001.fastq.gz Thamnophis_AAGAGA_L001_R2_001.fastq.gz Thamnophis_AAGAGA_L002_R1_001.fastq.gz Thamnophis_AAGAGA_L002_R2_001.fastq.gz
+++ cat Thamnophis_AAGAGA_L001_R1_001.fastq Thamnophis_AAGAGA_L002_R1_001.fastq
+++ cat Thamnophis_AAGAGA_L001_R2_001.fastq Thamnophis_AAGAGA_L002_R2_001.fastq
+++ java -jar /opt/asn/apps/trimmomatic_0.35/Trimmomatic-0.35/trimmomatic-0.35.jar PE -phred33 Thamnophis_AAGAGA_All_R1.fastq Thamnophis_AAGAGA_All_R2.fastq Thamnophis_AAGAGA_All_R1_paired.fastq Thamnophis_AAGAGA_All
+_R1_unpaired.fastq Thamnophis_AAGAGA_All_R2_paired.fastq Thamnophis_AAGAGA_All_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 HEADCROP:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:6:30 MINLEN:36
+Error: Unable to access jarfile /opt/asn/apps/trimmomatic_0.35/Trimmomatic-0.35/trimmomatic-0.35.jar
+++ cp Thamnophis_AAGAGA_All_R1_paired.fastq /home/dys0004/Thamnophis_AAGAGA_All_R1_paired.fastq
+cp: cannot stat `Thamnophis_AAGAGA_All_R1_paired.fastq': No such file or directory
+++ rm Thamnophis_AAGAGA_All_R1_paired.fastq
+rm: cannot remove `Thamnophis_AAGAGA_All_R1_paired.fastq': No such file or directory
+++ gzip '/home/dys0004/*fastq'
+gzip: /home/dys0004/*fastq: No such file or directory
+
+
+###### this script didnt output any files ##### !!!!!!!!!!!
+
+################################################################################################
+################################################################################################
+
+
+
+##### cleanThamNOsecondTRY.sh ####
+#### Error message from this file ####
+#### CleaningScriptThamnophisSecondTry.e534776 ####
+
+++ tissueID=Thamnophis_AAGAGA
+++ gunzip Thamnophis_AAGAGA_L001_R1_001.fastq.gz Thamnophis_AAGAGA_L001_R2_001.fastq.gz Thamnophis_AAGAGA_L002_R1_001.fastq.gz Thamnophis_AAGAGA_L002_R2_001.fastq.gz
+++ cat Thamnophis_AAGAGA_L001_R1_001.fastq Thamnophis_AAGAGA_L002_R1_001.fastq
+++ cat Thamnophis_AAGAGA_L001_R2_001.fastq Thamnophis_AAGAGA_L002_R2_001.fastq
+++ java -jar /opt/asn/apps/trimmomatic_0.35/Trimmomatic-0.35/trimmomatic-0.35.jar PE -phred33 Thamnophis_AAGAGA_All_R1.fastq Thamnophis_AAGAGA_All_R2.fastq Thamnophis_AAGAGA_All_R1_paired.fastq Thamnophis_AAGAGA_All
+_R1_unpaired.fastq Thamnophis_AAGAGA_All_R2_paired.fastq Thamnophis_AAGAGA_All_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 HEADCROP:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:6:30 MINLEN:36
+Error: Unable to access jarfile /opt/asn/apps/trimmomatic_0.35/Trimmomatic-0.35/trimmomatic-0.35.jar
+++ cp Thamnophis_AAGAGA_All_R1_paired.fastq /home/dys0004/Thamnophis_AAGAGA_All_R1_paired.fastq
+cp: cannot stat `Thamnophis_AAGAGA_All_R1_paired.fastq': No such file or directory
+++ rm Thamnophis_AAGAGA_All_R1_paired.fastq
+rm: cannot remove `Thamnophis_AAGAGA_All_R1_paired.fastq': No such file or directory
+++ gzip /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_All_R1.fastq /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_All_R2.fastq /home/dys0004/ReptileBloodTranscriptome/Tha
+mnophis/Thamnophis_AAGAGA_L001_R1_001.fastq /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_L001_R2_001.fastq /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_L002_R1_001.fas
+tq /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_L002_R2_001.fastq
+Warning: Permanently added 'node206,192.168.10.206' (RSA) to the list of known hosts.
+
+
+### This script did output two files !!!!!!!
+Thamnophis_AAGAGA_All_R1.fastq.gz
+Thamnophis_AAGAGA_All_R2.fastq.gz
+
+
+### Sizes of files
+-rw-r--r-- 1 dys0004 tss0019_lab 1067017174 May 24 06:06 Thamnophis_AAGAGA_All_R1.fastq.gz
+-rw-r--r-- 1 dys0004 tss0019_lab 1101295152 May 24 06:07 Thamnophis_AAGAGA_All_R2.fastq.gz
+
+#
+
+###############################################################################################
+################################################################################################
+
+###### MAY 25th 2018 ########
+
+################################################################################################
+################################################################################################
+
+#### cleanThamnothirdTry.sh
+### Error message ####
+
+
+++ tissueID=Thamnophis_AAGAGA
+++ cd DATADIR
+/cm/local/apps/torque/var/spool/mom_priv/jobs/540419.hopper-mgt.SC: line 111: cd: DATADIR: No such file or directory
+++ cp '/home/dys0004/ReptileBloodTranscriptome/Thamnophis/*All_R1.fastq' .
+cp: cannot stat `/home/dys0004/ReptileBloodTranscriptome/Thamnophis/*All_R1.fastq': No such file or directory
+++ cp '/home/dys0004/ReptileBloodTranscriptome/Thamnophis/*All_R2.fastq' .
+cp: cannot stat `/home/dys0004/ReptileBloodTranscriptome/Thamnophis/*All_R2.fastq': No such file or directory
+++ gunzip Thamnophis_AAGAGA_L001_R1_001.fastq.gz Thamnophis_AAGAGA_L001_R2_001.fastq.gz Thamnophis_AAGAGA_L002_R1_001.fastq.gz Thamnophis_AAGAGA_L002_R2_001.fastq.gz
+++ cat Thamnophis_AAGAGA_L001_R1_001.fastq Thamnophis_AAGAGA_L002_R1_001.fastq
+++ cat Thamnophis_AAGAGA_L001_R2_001.fastq Thamnophis_AAGAGA_L002_R2_001.fastq
+++ java -jar /opt/asn/apps/trimmomatic_0.35/Trimmomatic-0.35/trimmomatic-0.35.jar PE -phred33 Thamnophis_AAGAGA_All_R1.fastq Thamnophis_AAGAGA_All_R2.fastq Thamnophis_AAGAGA_All_R1_paired.fastq Thamnophis_AAGAGA_All
+_R1_unpaired.fastq Thamnophis_AAGAGA_All_R2_paired.fastq Thamnophis_AAGAGA_All_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 HEADCROP:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:6:30 MINLEN:36
+Error: Unable to access jarfile /opt/asn/apps/trimmomatic_0.35/Trimmomatic-0.35/trimmomatic-0.35.jar
+++ cp Thamnophis_AAGAGA_All_R1_paired.fastq /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_All_R1_paired.fastq
+cp: cannot stat `Thamnophis_AAGAGA_All_R1_paired.fastq': No such file or directory
+++ cp Thamnophis_AAGAGA_All_R2_paired.fastq /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_All_R1_paired.fastq
+cp: cannot stat `Thamnophis_AAGAGA_All_R2_paired.fastq': No such file or directory
+++ cd /home/dys0004/ReptileBloodTranscriptome/Thamnophis/
+++ gzip '/home/dys0004/ReptileBloodTranscriptome/Thamnophis/*_paired.fastq'
+gzip: /home/dys0004/ReptileBloodTranscriptome/Thamnophis/*_paired.fastq: No such file or directory
+
+#### This script did not produce any output files ####
+
+
+################################################################################################
+################################################################################################
+
+####May 26th 2018######
+
+################################################################################################
+################################################################################################
+
+
+## Currently modifying the second script named it the "cleanThamno_fourthTry.sh" 
+## first error in second script.... script could not find the location of the jar file 
+
+Error: Unable to access jarfile /opt/asn/apps/trimmomatic_0.35/Trimmomatic-0.35/trimmomatic-0.35.jar
+
+### Contacted Hopper adminstration to locate jar file, they give me a path to the jar file and they updated Trimmomatic to its lastest version 
+
+/tools/trimmomatic-0.37/bin
+
+################################################################################################
+################################################################################################
+
+###cleanThamno_fourthTry.sh
+### error message 
+
+x++ tissueID=Thamnophis_AAGAGA
+++ gunzip Thamnophis_AAGAGA_L001_R1_001.fastq.gz Thamnophis_AAGAGA_L001_R2_001.fastq.gz Thamnophis_AAGAGA_L002_R1_001.fastq.gz Thamnophis_AAGAGA_L002_R2_001.fastq.gz
+++ cat Thamnophis_AAGAGA_L001_R1_001.fastq Thamnophis_AAGAGA_L002_R1_001.fastq
+++ cat Thamnophis_AAGAGA_L001_R2_001.fastq Thamnophis_AAGAGA_L002_R2_001.fastq
+++ java -jar /tools/trimmomatic-0.37/bin/trimmomatic.jar PE -phred33 Thamnophis_AAGAGA_All_R1.fastq Thamnophis_AAGAGA_All_R2.fastq Thamnophis_AAGAGA_All_R1_paired.fastq Thamnophis_AAGAGA_All_R1_unpaired.fastq Thamnophis_AAGAGA_All_R2_paired.fastq Thamnophis_AAGAGA_All_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 HEADCROP:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:6:30 MINLEN:36
+TrimmomaticPE: Started with arguments: -phred33 Thamnophis_AAGAGA_All_R1.fastq Thamnophis_AAGAGA_All_R2.fastq Thamnophis_AAGAGA_All_R1_paired.fastq Thamnophis_AAGAGA_All_R1_unpaired.fastq Thamnophis_AAGAGA_All_R2_paired.fastq Thamnophis_AAGAGA_All_R2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 HEADCROP:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:6:30 MINLEN:36
+Multiple cores found: Using 16 threads
+May 26, 2018 3:12:43 PM org.usadellab.trimmomatic.trim.IlluminaClippingTrimmer makeIlluminaClippingTrimmer
+SEVERE: null
+java.io.FileNotFoundException: /gpfs01/home/dys0004/ReptileBloodTranscriptome/Thamnophis/TruSeq3-PE.fa (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at org.usadellab.trimmomatic.fasta.FastaParser.parse(FastaParser.java:54)
+	at org.usadellab.trimmomatic.trim.IlluminaClippingTrimmer.loadSequences(IlluminaClippingTrimmer.java:107)
+	at org.usadellab.trimmomatic.trim.IlluminaClippingTrimmer.makeIlluminaClippingTrimmer(IlluminaClippingTrimmer.java:70)
+	at org.usadellab.trimmomatic.trim.TrimmerFactory.makeTrimmer(TrimmerFactory.java:27)
+	at org.usadellab.trimmomatic.TrimmomaticPE.run(TrimmomaticPE.java:515)
+	at org.usadellab.trimmomatic.Trimmomatic.main(Trimmomatic.java:35)
+
+Exception in thread "main" java.io.FileNotFoundException: Thamnophis_AAGAGA_All_R1.fastq (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at org.usadellab.trimmomatic.fastq.FastqParser.parse(FastqParser.java:127)
+	at org.usadellab.trimmomatic.TrimmomaticPE.process(TrimmomaticPE.java:257)
+	at org.usadellab.trimmomatic.TrimmomaticPE.run(TrimmomaticPE.java:518)
+	at org.usadellab.trimmomatic.Trimmomatic.main(Trimmomatic.java:35)
+++ cp Thamnophis_AAGAGA_All_R1_paired.fastq /home/dys0004/Thamnophis_AAGAGA_All_R1_paired.fastq
+cp: cannot stat `Thamnophis_AAGAGA_All_R1_paired.fastq': No such file or directory
+++ rm Thamnophis_AAGAGA_All_R1_paired.fastq
+rm: cannot remove `Thamnophis_AAGAGA_All_R1_paired.fastq': No such file or directory
+++ gzip /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_All_R2.fastq /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_L001_R1_001.fastq /home/dys0004/ReptileBloodT
+ranscriptome/Thamnophis/Thamnophis_AAGAGA_L001_R2_001.fastq /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamnophis_AAGAGA_L002_R1_001.fastq /home/dys0004/ReptileBloodTranscriptome/Thamnophis/Thamno
+phis_AAGAGA_L002_R2_001.fastq
+
+
+### This script did produce some output files and it unzipped raw data files in the scratch directory 
+
+-rw-r--r-- 1 dys0004 tss0019_lab 1101295152 May 26 15:12 Thamnophis_AAGAGA_All_R2.fastq.gz
+
+
+################################################################################################
+################################################################################################
+
+## THIS SCRIPT WORKED!!!!!!
+##cleanThamno_fifth_try.sh
+
+
+### This script did output the correct files !!!!!
+
+-rw-r--r-- 1 dys0004 tss0019_lab 5180615016 May 26 17:24 Thamnophis_AAGAGA_All_R1.fastq
+-rw-r--r-- 1 dys0004 tss0019_lab 3981950483 May 26 17:26 Thamnophis_AAGAGA_All_R1_paired.fastq
+-rw-r--r-- 1 dys0004 tss0019_lab  210860370 May 26 17:26 Thamnophis_AAGAGA_All_R1_unpaired.fastq
+-rw-r--r-- 1 dys0004 tss0019_lab 5180615016 May 26 17:25 Thamnophis_AAGAGA_All_R2.fastq
+-rw-r--r-- 1 dys0004 tss0019_lab 3968754195 May 26 17:26 Thamnophis_AAGAGA_All_R2_paired.fastq
+-rw-r--r-- 1 dys0004 tss0019_lab  131099349 May 26 17:26 Thamnophis_AAGAGA_All_R2_unpaired.fastq
+
+###Now I have the correct files to build the transcriptome using Trinity 
+
+################################################################################################
+################################################################################################
+
+May 27th 2018 
+
+################################################################################################
+################################################################################################
+
+##Trinity Script was successful !!! loaded Thamnophis Transciptome onto Google Drive
+
+SchwartzLab/Projects/Blood-Liver_Transcriptomes/Data/Blood Transcriptomes
+
+PBS Job Id: 554357.hopper-mgt
+Job Name:   Trinity.test15Thamnophis
+Exec host:  node139/0-19
+Execution terminated
+Exit_status=127
+resources_used.cput=33:12:25
+resources_used.vmem=130007304kb
+resources_used.walltime=19:29:09
+resources_used.mem=127742132kb
+resources_used.energy_used=0
+req_information.task_count.0=1
+req_information.lprocs.0=20
+req_information.thread_usage_policy.0=allowthreads
+req_information.hostlist.0=node139:ppn=20
+req_information.task_usage.0.task.0={"task":{"cpu_list":"0-19","mem_list":"0-1","cores":0,"threads":20,"host":"node139"}}
+Error_Path: hopper-login:/gpfs01/home/dys0004/ReptileBloodTranscriptome/Thamnophis/Trinity.test15Thamnophis.e554357
+Output_Path: hopper-login:/gpfs01/home/dys0004/ReptileBloodTranscriptome/Thamnophis/Trinity.test15Thamnophis.o554357
+
