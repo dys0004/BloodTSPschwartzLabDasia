@@ -1,5 +1,5 @@
 # BloodTSPschwartzLabDasia
-Consists of Trimmomatic and Trinity scripts to build reptile blood transcriptomes.All work done on Auburn University's Supercomputer, Hopper
+Consists of Trimmomatic and Trinity scripts to build reptile blood transcriptomes.All work done on Auburn University's Supercomputer, Hopper. It also includes scripts for BWA mapping to get count and stat tables 
 
 ## Script: CleaningScriptThamnophisFifthTry.sh
 This script consists of programs Trimmomatic and FastQC. Trimmomatic cleans the raw data and FastQC assess the quality. Additionally, you can use FastQC before Trimmomatic to assess how your raw data looks before it is "cleaned". 
